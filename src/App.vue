@@ -1,18 +1,40 @@
 <template>
 <div id="app">
   <md-toolbar>
+    <div class="navTitle">
       <img src="./assets/logo.png">
-    <h1 class="md-title">Fempire Vue.js</h1>
+      <h1 class="md-title">Fempire Vue.js</h1>
+    </div>
+
+    <SpeakerSearch
+      :speakers="speakers"
+      @filtered-speakers="e => speakersFiltered = e"
+    />
   </md-toolbar>
+
   <div class="fempire-content">
-    <router-view />
+    <SpeakerList :speakers="speakersFiltered" />
   </div>
 </div>
 </template>
 
 <script>
+import speakers from './mock-speaker';
+import SpeakerList from './components/SpeakerList';
+import SpeakerSearch from './components/SpeakerSearch';
+
 export default {
   name: 'app',
+
+  components: {
+    SpeakerList,
+    SpeakerSearch,
+  },
+
+  data: () => ({
+    speakers,
+    speakersFiltered: speakers,
+  }),
 };
 </script>
 
@@ -31,11 +53,24 @@ $toolbarHeight: 48px;
 }
 
 .md-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   height: $toolbarHeight;
+  width: 100vw;
 
-  img {
-    height: 45px;
-    margin-right: 15px;
+  .navTitle {
+    display: flex;
+    align-items: center;
+
+    img {
+      height: calc(0.8 * #{ $toolbarHeight });
+      margin-right: 15px;
+    }
+  }
+
+  .SpeakerSearch {
+    width: calc(100vw / 3);
   }
 }
 

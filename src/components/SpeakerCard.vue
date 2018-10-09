@@ -6,7 +6,7 @@
   <md-card-content>
 
     <div>
-      {{ twitter }}
+      <a :href="twitterUrl" target="_blank" class="twitter">{{ twitter }}</a>
     </div>
 
     <div v-if="website">
@@ -72,6 +72,12 @@ export default {
       type: String,
     },
   },
+
+  computed: {
+    twitterUrl() {
+      return `http://twitter.com/${this.twitter}`;
+    },
+  },
 };
 </script>
 
@@ -80,8 +86,13 @@ export default {
 .md-theme-default.md-card {
   width: 100%;
 }
-.md-card-header{
+
+.md-card-header {
     background-color: #dedede;
     padding: 0px 16px;
+}
+
+.twitter {
+  color: #00C6FF;
 }
 </style>

@@ -14,7 +14,6 @@
 </template>
 
 <script>
-import speakers from '../mock-speaker';
 import SpeakerCard from './SpeakerCard';
 
 export default {
@@ -22,9 +21,12 @@ export default {
     SpeakerCard,
   },
 
-  data: () => ({
-    speakers,
-  }),
+  props: {
+    speakers: {
+      required: true,
+      type: Array,
+    },
+  },
 };
 </script>
 
